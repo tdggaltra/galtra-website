@@ -29,7 +29,7 @@ export default function Logo({
       {/* Logo Image */}
       <div className="relative flex-shrink-0">
         <Image
-          src="/images/galtra-logo1.png"
+          src="/images/favicon-removebg-preview.png"
           alt="Galtra - Data Science and Analytics"
           width={size === 'sm' ? 32 : size === 'md' ? 40 : size === 'lg' ? 48 : 64}
           height={size === 'sm' ? 32 : size === 'md' ? 40 : size === 'lg' ? 48 : 64}

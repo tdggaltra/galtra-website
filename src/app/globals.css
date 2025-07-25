@@ -14,7 +14,7 @@
   --primary-700: #1d4ed8;
   --primary-800: #1e40af;
   --primary-900: #1e3a8a;
-
+  
   --accent-50: #fdf4ff;
   --accent-100: #fae8ff;
   --accent-200: #f5d0fe;
@@ -25,7 +25,7 @@
   --accent-700: #a21caf;
   --accent-800: #86198f;
   --accent-900: #701a75;
-
+  
   --dark-50: #f8fafc;
   --dark-100: #f1f5f9;
   --dark-200: #e2e8f0;
@@ -36,6 +36,31 @@
   --dark-700: #334155;
   --dark-800: #1e293b;
   --dark-900: #0f172a;
+  --dark-950: #020617;
+}
+
+/* Dark mode variables */
+.dark {
+  --background: #0f172a;
+  --background-secondary: #1e293b;
+  --background-tertiary: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --border-primary: #334155;
+  --border-secondary: #475569;
+}
+
+/* Light mode variables */
+:root {
+  --background: #ffffff;
+  --background-secondary: #f8fafc;
+  --background-tertiary: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e1;
 }
 
 /* Base Styles */
@@ -45,11 +70,20 @@ html {
 
 body {
   font-family: var(--font-inter, system-ui, sans-serif);
+  background-color: var(--background);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Components */
 .glass-effect {
   @apply bg-white/80 dark:bg-dark-800/80 backdrop-blur-sm border border-white/20 dark:border-dark-700/50;
+  transition: all 0.3s ease;
+}
+
+.glass-effect-dark {
+  @apply bg-dark-800/60 backdrop-blur-md border border-dark-700/50;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 .gradient-text {
@@ -62,6 +96,20 @@ body {
 
 .container {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Dark mode backgrounds */
+.bg-dark-theme {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+
+.bg-dark-gradient {
+  background: linear-gradient(135deg, 
+    #0f172a 0%, 
+    #1e293b 25%, 
+    #1e1b4b 75%, 
+    #312e81 100%
+  );
 }
 
 /* Animations */
@@ -78,18 +126,33 @@ body {
   animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+@keyframes theme-transition {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.theme-transition {
+  animation: theme-transition 0.3s ease-in-out;
+}
+
 /* Background Pattern */
 .bg-hero-pattern {
-  background-image: 
+  background-image:
     radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.15) 1px, transparent 0);
   background-size: 20px 20px;
 }
 
-/* Smooth transitions */
+.dark .bg-hero-pattern {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.08) 1px, transparent 0);
+  background-size: 20px 20px;
+}
+
+/* Smooth transitions for all elements */
 * {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 200ms;
 }
 
 /* Focus styles */
@@ -112,4 +175,48 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-400 dark:bg-dark-500;
+}
+
+/* Orbs e efeitos para dark mode */
+.dark-orb-primary {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+}
+
+.dark-orb-accent {
+  background: radial-gradient(circle, rgba(212, 70, 239, 0.1) 0%, transparent 70%);
+}
+
+/* Cards e componentes responsivos ao tema */
+.card-responsive {
+  @apply bg-white dark:bg-dark-800 border border-gray-200 dark:border-dark-700;
+  transition: all 0.3s ease;
+}
+
+.text-responsive {
+  @apply text-gray-900 dark:text-gray-100;
+  transition: color 0.3s ease;
+}
+
+.text-responsive-secondary {
+  @apply text-gray-600 dark:text-gray-300;
+  transition: color 0.3s ease;
+}
+
+.text-responsive-tertiary {
+  @apply text-gray-500 dark:text-gray-400;
+  transition: color 0.3s ease;
+}
+
+/* Hover effects que funcionam em ambos os temas */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  @apply shadow-xl;
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }

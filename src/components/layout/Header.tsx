@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from '@/components/ui/Logo';
+import SimpleThemeToggle from '@/components/ui/SimpleThemeToggle'; // Final
 
 const navigation = [
   { name: 'Início', href: '/' },
@@ -45,6 +46,23 @@ export default function Header() {
     setActiveDropdown(null);
   };
 
+  // 🧪 COMPONENTE DE TESTE INLINE
+  const TestButton = () => (
+    <button
+      onClick={() => alert('Botão funciona!')}
+      style={{
+        background: 'red',
+        color: 'white',
+        padding: '8px 12px',
+        border: 'none',
+        borderRadius: '4px',
+        fontSize: '12px',
+      }}
+    >
+      TESTE
+    </button>
+  );
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -56,7 +74,7 @@ export default function Header() {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Logo 
+          <Logo
             size="md" 
             showText={true}
             className="transition-transform duration-200 hover:scale-105"
@@ -107,8 +125,10 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* 🧪 DESKTOP: CTA Button + TESTE */}
           <div className="hidden lg:flex items-center space-x-4">
+            <SimpleThemeToggle /> {/* 🔥 THEME TOGGLE AQUI */}
+            
             <Link
               href="/contact"
               className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white px-6 py-2.5 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -117,17 +137,22 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors duration-200"
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6 text-dark-700 dark:text-dark-300" />
-            ) : (
-              <Menu className="w-6 h-6 text-dark-700 dark:text-dark-300" />
-            )}
-          </button>
+          {/* 🧪 MOBILE: Menu button + TESTE */}
+          <div className="lg:hidden flex items-center space-x-3">
+            <SimpleThemeToggle /> {/* 🔥 THEME TOGGLE AQUI */}
+            
+            <button
+              onClick={toggleMenu}
+              className="p-2 rounded-lg hover:bg-white/10 transition-colors duration-200"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-dark-700 dark:text-dark-300" />
+              ) : (
+                <Menu className="w-6 h-6 text-dark-700 dark:text-dark-300" />
+              )}
+            </button>
+          </div>
+
         </div>
 
         {/* Mobile Navigation */}
