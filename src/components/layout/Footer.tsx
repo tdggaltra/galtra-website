@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   Mail, 
@@ -127,14 +128,14 @@ export default function Footer() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Seu melhor email"
-                      className="w-full px-4 py-3 bg-dark-800/50 border border-dark-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-dark-400"
+                      className="w-full px-4 py-3 bg-dark-800/50 border border-dark-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-dark-400 text-white"
                       disabled={isLoading || isSubscribed}
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={isLoading || isSubscribed || !email}
-                    className="px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2"
+                    className="px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg font-medium transition-all duration-200 flex items-center justify-center space-x-2 text-white"
                   >
                     {isLoading ? (
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -171,13 +172,16 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Logo */}
-                <Link href="/" className="flex items-center space-x-2 group mb-6">
-                  <div className="relative">
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-200">
-                      <span className="text-white font-bold text-xl">G</span>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-accent-500 rounded-lg opacity-20 blur-sm group-hover:opacity-40 transition-opacity duration-200"></div>
+                {/* Logo - 🎯 SEMPRE LOGO BRANCA NO FOOTER */}
+                <Link href="/" className="flex items-center space-x-3 group mb-6">
+                  <div className="relative flex-shrink-0">
+                    <Image
+                      src="/images/logo-galtrabranco.png"
+                      alt="Galtra - Data Science and Analytics"
+                      width={40}
+                      height={40}
+                      className="h-10 w-auto transition-transform duration-300 group-hover:scale-110"
+                    />
                   </div>
                   <span className="text-2xl font-bold gradient-text">Galtra</span>
                 </Link>
@@ -213,7 +217,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <h3 className="text-lg font-semibold mb-4">Serviços</h3>
+                <h3 className="text-lg font-semibold mb-4 text-white">Serviços</h3>
                 <ul className="space-y-3">
                   {footerLinks.services.map((link) => (
                     <li key={link.name}>
@@ -238,7 +242,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <h3 className="text-lg font-semibold mb-4">Empresa</h3>
+                <h3 className="text-lg font-semibold mb-4 text-white">Empresa</h3>
                 <ul className="space-y-3">
                   {footerLinks.company.map((link) => (
                     <li key={link.name}>
@@ -263,7 +267,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <h3 className="text-lg font-semibold mb-4">Recursos</h3>
+                <h3 className="text-lg font-semibold mb-4 text-white">Recursos</h3>
                 <ul className="space-y-3">
                   {footerLinks.resources.map((link) => (
                     <li key={link.name}>
@@ -288,7 +292,7 @@ export default function Footer() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <h3 className="text-lg font-semibold mb-4">Legal</h3>
+                <h3 className="text-lg font-semibold mb-4 text-white">Legal</h3>
                 <ul className="space-y-3">
                   {footerLinks.legal.map((link) => (
                     <li key={link.name}>
